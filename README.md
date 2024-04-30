@@ -15,6 +15,7 @@ We propose to use SQL for this analysis due to its powerful data manipulation an
 
 SQL Code
 --Classic Latin American Names: Identify names that have consistently been popular over the years.
+
 SELECT Child_s_First_Name, SUM(Count) Total_value
 FROM [dbo].[Popular_Baby_Names]
 WHERE Ethnicity='HISPANIC'
@@ -26,6 +27,7 @@ ORDER BY SUM(Count) DESC;
 
 SQL Code
 -- Timeless or Trendy: Classify names based on their popularity over time.
+
 SELECT Upper(Child_s_First_Name), SUM(Count) Total_value,
 CASE
     WHEN COUNT(Upper(Child_s_First_Name)) > 80 THEN 'Classic'
@@ -41,6 +43,7 @@ ORDER BY Child_s_First_Name ASC;
 
 SQL Code
 --Top-ranked Female Names since 1920: Rank female names by the total number of babies given that name.
+
 SELECT TOP 10 RANK() OVER (ORDER BY SUM(Count) DESC) AS name_rank, Child_s_First_Name, SUM(Count) Total_value
 FROM [dbo].[Popular_Baby_Names]
 WHERE Gender = 'FEMALE'
@@ -51,6 +54,7 @@ GROUP BY Child_s_First_Name
 
 SQL Code
 --Picking a Baby Name: Select female names from 2016 onwards that end in ‘a’, and order them by popularity.
+
 SELECT Child_s_First_Name
 FROM [dbo].[Popular_Baby_Names]
 WHERE Gender = 'FEMALE' AND Year_of_Birth > 2015 AND Upper(Child_s_First_Name) LIKE '%A'
