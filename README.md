@@ -13,7 +13,7 @@ Identify trends in baby names.
 We propose to use SQL for this analysis due to its powerful data manipulation and querying capabilities. Here are some of the SQL queries we plan to use:
 1. Classic American Names: Identify names that have consistently been popular over the years.
 
-# SQL Code
+SQL Code
 --Classic Latin American Names: Identify names that have consistently been popular over the years.
 SELECT Child_s_First_Name, SUM(Count) Total_value
 FROM [dbo].[Popular_Baby_Names]
@@ -24,7 +24,7 @@ ORDER BY SUM(Count) DESC;
 
 2. Timeless or Trendy: Classify names based on their popularity over time.
 
-# SQL Code
+SQL Code
 -- Timeless or Trendy: Classify names based on their popularity over time.
 SELECT Upper(Child_s_First_Name), SUM(Count) Total_value,
 CASE
@@ -39,7 +39,7 @@ ORDER BY Child_s_First_Name ASC;
 
 3. Top-ranked Female Names since 1920: Rank female names by the total number of babies given that name.
 
-#SQL Code
+SQL Code
 --Top-ranked Female Names since 1920: Rank female names by the total number of babies given that name.
 SELECT TOP 10 RANK() OVER (ORDER BY SUM(Count) DESC) AS name_rank, Child_s_First_Name, SUM(Count) Total_value
 FROM [dbo].[Popular_Baby_Names]
@@ -49,7 +49,7 @@ GROUP BY Child_s_First_Name
 
 4. Picking a Baby Name: Select female names from 2016 onwards that end in ‘a’, and order them by popularity.
 
-# SQL Code
+SQL Code
 --Picking a Baby Name: Select female names from 2016 onwards that end in ‘a’, and order them by popularity.
 SELECT Child_s_First_Name
 FROM [dbo].[Popular_Baby_Names]
@@ -57,5 +57,9 @@ WHERE Gender = 'FEMALE' AND Year_of_Birth > 2015 AND Upper(Child_s_First_Name) L
 GROUP BY Child_s_First_Name
 ORDER BY SUM(Count) DESC;
 
+# Expected Outcomes
+By analyzing the dataset with these queries, I expect to gain insights into the popularity of baby names over time, the distribution of names by sex and ethnic group, and trends in baby names. These insights could be valuable for sociologists, historians, and parents-to-be.
 
+# Conclusion
+This proposal outlines a plan to analyze the Popular Baby Names dataset using SQL. By executing the proposed SQL queries, I can extract meaningful insights from the dataset and understand trends in baby names over time.
 
